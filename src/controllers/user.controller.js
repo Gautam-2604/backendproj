@@ -205,7 +205,7 @@ const registerUser = asynchandler( async (req,res)=>{
     const getCurrentUser= asynchandler(async(req,res)=>{
         return res
         .status(200)
-        .json(200, req.user,"Current user fetched successfully")
+        .json(new ApiResponse(200, req.user,"Current user fetched successfully"))
       })
     const updateAccountDetails = asynchandler(async(req,res)=>{
         const {fullName, email} = req.body
@@ -213,7 +213,7 @@ const registerUser = asynchandler( async (req,res)=>{
             throw new ApiError(400,"No UserName or email entered")
         }
 
-       const user = User.findByIdAndUpdate(
+       const user = await User.findByIdAndUpdate(
             req.user?._id,
             {
                 $set:{
