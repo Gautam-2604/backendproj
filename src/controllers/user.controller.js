@@ -342,6 +342,7 @@ const registerUser = asynchandler( async (req,res)=>{
                                     localField:"owner",
                                     foreignField:"_id",
                                     as:"owner",
+                                    //sub pipelines, mapping videos to owners
                                     pipeline:[
                                         {
                                             $project:{
